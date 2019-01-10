@@ -1,12 +1,17 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
+import Root from 'Root';
 import CommentBox from 'components/CommentBox';
 
 let wrapper;
 
 beforeEach(() => {
-  wrapper = mount(<CommentBox />);
+  wrapper = mount(
+    <Root>
+      <CommentBox />
+    </Root>
+  );
 });
 
 afterEach(() => {
@@ -33,7 +38,6 @@ describe('user can interact with form', () => {
 
   it('has a textarea that users can type in', () => {
     expect(wrapper.find('textarea').prop('value')).toEqual('42');
-    expect(wrapper.state('comment')).toEqual('42');
   });
 
   it('when form is submitted textarea gets empty', () => {
@@ -41,6 +45,5 @@ describe('user can interact with form', () => {
     wrapper.update();
 
     expect(wrapper.find('textarea').prop('value')).toEqual('');
-    expect(wrapper.state('comment')).toEqual('');
   });
 });
