@@ -18,9 +18,9 @@ afterEach(() => {
   wrapper.unmount();
 });
 
-it('has a text area and a button', () => {
+it('has a text area and two button', () => {
   expect(wrapper.find('textarea').length).toEqual(1);
-  expect(wrapper.find('button[type="submit"]').length).toEqual(1);
+  expect(wrapper.find('button').length).toEqual(2);
 });
 
 describe('user can interact with form', () => {
