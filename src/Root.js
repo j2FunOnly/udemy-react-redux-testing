@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 
 import asyncMiddleware from 'middlewares/async';
 import customDebug from 'middlewares/customDebug';
+import stateValidator from 'middlewares/stateValidator';
 
 import reducers from 'reducers';
 
@@ -12,7 +13,7 @@ export default ({children, initState = {}}) => {
   const store = createStore(
     reducers,
     initState,
-    applyMiddleware(asyncMiddleware, customDebug)
+    applyMiddleware(asyncMiddleware, customDebug, stateValidator)
   );
 
   return (
