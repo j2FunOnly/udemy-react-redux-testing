@@ -4,8 +4,20 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 
 class CommentBox extends Component {
-  state = {
-    comment: ''
+  state = { comment: '' };
+
+  componentDidMount () {
+    this.shouldNavigateAway();
+  }
+
+  componentDidUpdate () {
+    this.shouldNavigateAway();
+  }
+
+  shouldNavigateAway () {
+    if (this.props.auth) return;
+
+    this.props.history.push('/');
   }
 
   handleChange = event => {
@@ -36,4 +48,8 @@ class CommentBox extends Component {
   }
 }
 
-export default connect(null, actions)(CommentBox);
+function mapStateToProps (state) {
+  return { auth: state.auth }
+}
+
+export default connect(mapStateToProps, actions)(CommentBox);
